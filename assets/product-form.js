@@ -21,6 +21,16 @@ if (!customElements.get('product-form')) {
         evt.preventDefault();
         if (this.submitButton.getAttribute('aria-disabled') === 'true') return;
 
+        const qnt_value = document.querySelector(".quantity__input").value;
+
+        if (qnt_value > variant_limits.maximum) {
+          alert(`${variant_limits.maximum}`);
+          return;
+        } else if (qnt_value < variant_limits.minimum) {
+          alert(`${variant_limits.minimum}`);
+          return;
+        }
+
         this.handleErrorMessage();
 
         this.submitButton.setAttribute('aria-disabled', true);

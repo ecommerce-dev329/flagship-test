@@ -39,8 +39,6 @@
     }
   {%- endstyle -%}
 
-  <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
   {%- if product.quantity_price_breaks_configured? -%}
     <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
@@ -697,6 +695,17 @@
         </div>
       </modal-dialog>
     {%- endfor -%}
+
+    <script>
+      var variant_limits = {{ product.selected_or_first_available_variant.metafields.custom.information_limits.value |  json }};
+      const variant_selects = document.querySelector(".product-form__input");
+
+      variant_selects.addEventListener("click", function(event) {
+        console.log(event.target.matches(".product-form__input input[type='radio']"));
+      })
+    </script>
+    <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
     {%- if product.media.size > 0 -%}
       <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
