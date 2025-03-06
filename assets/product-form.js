@@ -21,14 +21,22 @@ if (!customElements.get('product-form')) {
         evt.preventDefault();
         if (this.submitButton.getAttribute('aria-disabled') === 'true') return;
 
-        const qnt_value = document.querySelector(".quantity__input").value;
+        const qnt_value = parseInt(document.querySelector(".quantity__input").value);
+        const variant_sku = document.querySelectorAll("variant-selects input[type='radio']");
+        variant_sku.forEach(ele => {
+          if (ele.hasAttribute("checked")) {
+            console.log(ele);
+          }
+        })
 
-        if (qnt_value > variant_limits.maximum) {
-          alert(`${variant_limits.maximum}`);
-          return;
-        } else if (qnt_value < variant_limits.minimum) {
-          alert(`${variant_limits.minimum}`);
-          return;
+        if (variant_limits != null) {
+          if (qnt_value > variant_limits.maximum) {
+            alert(`You can’t add more than ${variant_limits.maximum} quantity of <variant.sku>`);
+            return;
+          } else if (qnt_value < variant_limits.minimum) {
+            alert(`You can’t add less than ${variant_limits.minimum} quantity of <variant.sku>`);
+            return;
+          }
         }
 
         this.handleErrorMessage();
