@@ -18,16 +18,10 @@ if (!customElements.get('product-form')) {
       }
 
       onSubmitHandler(evt) {
+        console.log(product_var);
         evt.preventDefault();
         if (this.submitButton.getAttribute('aria-disabled') === 'true') return;
-
         const qnt_value = parseInt(document.querySelector(".quantity__input").value);
-        const variant_sku = document.querySelectorAll("variant-selects input[type='radio']");
-        variant_sku.forEach(ele => {
-          if (ele.hasAttribute("checked")) {
-            console.log(ele);
-          }
-        })
 
         if (variant_limits != null) {
           if (qnt_value > variant_limits.maximum) {
