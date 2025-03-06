@@ -18,17 +18,19 @@ if (!customElements.get('product-form')) {
       }
 
       onSubmitHandler(evt) {
+        console.log(product_var);
         evt.preventDefault();
         if (this.submitButton.getAttribute('aria-disabled') === 'true') return;
+        const qnt_value = parseInt(document.querySelector(".quantity__input").value);
 
-        const qnt_value = document.querySelector(".quantity__input").value;
-
-        if (qnt_value > variant_limits.maximum) {
-          alert(`${variant_limits.maximum}`);
-          return;
-        } else if (qnt_value < variant_limits.minimum) {
-          alert(`${variant_limits.minimum}`);
-          return;
+        if (variant_limits != null) {
+          if (qnt_value > variant_limits.maximum) {
+            alert(`You can’t add more than ${variant_limits.maximum} quantity of <variant.sku>`);
+            return;
+          } else if (qnt_value < variant_limits.minimum) {
+            alert(`You can’t add less than ${variant_limits.minimum} quantity of <variant.sku>`);
+            return;
+          }
         }
 
         this.handleErrorMessage();
