@@ -698,7 +698,6 @@
 
     <script>
       var variant_limits = {{ product.selected_or_first_available_variant.metafields.custom.information_limits.value |  json }};
-      var product_var = {{ product.currentVariant | json }};
     </script>
     <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>

@@ -18,7 +18,6 @@ if (!customElements.get('product-form')) {
       }
 
       onSubmitHandler(evt) {
-        console.log(product_var);
         evt.preventDefault();
         if (this.submitButton.getAttribute('aria-disabled') === 'true') return;
         const qnt_value = parseInt(document.querySelector(".quantity__input").value);
